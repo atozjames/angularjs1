@@ -1,0 +1,22 @@
+{
+  "name": "angularjs1",
+  "homepage": "https://github.com/atozjames/angularjs1",
+  "authors": [
+    "Atozjames <atozjames@gmail.com>"
+  ],
+  "description": "dir",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6"
+  }
+}
