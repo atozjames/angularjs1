@@ -9,34 +9,43 @@
 		<!-- Bootstrap CSS -->
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 		<script src="bower_components/angular/angular.js"></script>
-		
 		<link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
-		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	
-		<script type="text/javascript">
-		var app=angular.module("exampleApp", [])
-		.controller("simpleCtrl", function($scope){
-			$scope.city="Seoul";
-			var getContryCode=function(city)
-			{
-				switch(city){
-					case "Seoul": return "KR";
-					case:"New York" : retrun "US";
-				}
-			}
-		});
-		</script>
+		<script src="controller.js"></script>
 	</head>
-	<body>
-		<div class="well" ng-controller="simpleCtrl">
-			<p>This is  {{city}}</p>
-			<p>This contry code {{getContryCode(city)}} </p>
-		</div>
+	<body ng-controller="topLevelCtrl">
+	<div class="well">
+	<h4>Top Level Contrlooer</h4>
+    <div class="input-group">
+    	<span class="input-group-btn">
+    	<button type="button" class="btn btn-sm btn-default" ng-click="reverseText()">Reverse</button>
+    	<button type="button" class="btn btn-sm btn-default" ng-click="changeCase()">Case</button>
+    	</span>
+    	<input class="form-control" ng-model="dataValue">
+    </div>
+	</div>
+
+	<div class="well" ng-controller="firstChildCtrl">
+	<h4>First Child Controller</h4>	
+	<div class="input-group">
+    	<span class="input-group-btn">
+    	<button type="button" class="btn btn-sm btn-default" ng-click="reverseText()">Reverse</button>
+    	<button type="button" class="btn btn-sm btn-default" ng-click="changeCase()">Case</button>
+    	</span>
+    	<input class="form-control" ng-model="data.dataValue">
+    </div>
+	</div>
+	<div class="well" ng-controller="secondChildCtrl">
+		<h4>Sceond Child Controller</h4>	
+		<div class="input-group">
+	    	<span class="input-group-btn">
+	    	<button type="button" class="btn btn-sm btn-default" ng-click="reverseText()">Reverse</button>
+	    	<button type="button" class="btn btn-sm btn-default" ng-click="changeCase()">Case</button>
+	    	<button type="button" class="btn btn-sm btn-default" ng-click="shiftFour()">Shift</button>
+	    	</span>
+	    	<input class="form-control" ng-model="data.dataValue">
+	    </div>
+	</div>
+
 
 		<!-- jQuery -->
 		<script src="//code.jquery.com/jquery.js"></script>

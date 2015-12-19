@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="exampleApp">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Title Page</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<script src="bower_components/angular/angular.js"></script>
+		<link href="bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+	
+		<script type="text/javascript">
+		angular.module("exampleApp", [])
+		.controller("simpleCtrl", function($scope,$rootScope){
+
+			$scope.$on("zipCodeUpdated", function(event,args){
+				$scope[args.type]= args.zipCode;
+				console.log($scope[args.type]);
+			});
+
+			$scope.setAddress=function(type,zip){
+				$rootScope.$broadcast("zipCodeUpdated", {
+					type:type,zipCode:zip
+				});
+
+				console.log("Type:"+type+" / zip:"+zip);
+				
+			}
+
+			$scope.copyAddress=function(){
+				$scope.zip=$scope.billingZip;
+			}
+			
+		});
+		</script>
+	</head>
+	<body>
+
+		<div class="well" ng-controller="simpleCtrl">
+			<h4>Billing Zip Code</h4>
+			
+			<div class="form-group">
+			<input type="text" name="" id="input" class="form-control" placeholder="input zip code" ng-model="zip">
+			</div>
+
+			<button type="button" class="btn btn-sm btn-primary" ng-click="setAddress('billingZip',zip)">Save Billing</button>
+			
+		</div>
+
+		<div class="well" ng-controller="simpleCtrl">
+				<div class="form-group">
+					<label for="">ShippingZip Code</label>
+					<input type="text" class="form-control" id="" placeholder="Input field" ng-model="zip">
+				</div>
+			
+				<button type="button" class="btn btn-primary" ng-click="copyAddress()">Use Billigg</button>
+				<button type="button" class="btn btn-primary" ng-click="setAddress('shippingZip',zip)">Svae Shipping</button>
+			
+		</div>
+		<div class="well">
+		<h4>Zip code List</h4>
+		<ul ng-repeat="(key,value) in addresses">
+		<li>{{key}}/{{value}}</li>
+		</ul>
+		</div>
+
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	</body>
+</html>
