@@ -18,7 +18,7 @@ grunt.initConfig({
      options: {
         livereload: true,
      },
-     files: "./angular/*.html",
+     files: ["./angular/*.html","./angular/*.js"]
  
    }
 
