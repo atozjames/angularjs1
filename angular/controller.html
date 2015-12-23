@@ -24,9 +24,30 @@
 
 		<script>
 
+		$(document).ready(function(){
+			$('#jqui button').button().click(function(e){
+
+				//alert("jQuery Ui button was clicked!");
+				angular.element(angularRegion).scope().$apply('handleClick()');
+
+			});
+
+		});
+
 		var app=angular.module("exampleApp", []);
 		app.controller("simpleCtrl", function($scope){
                      $scope.data="hello world";
+                     $scope.buttonEnabled=true;
+                     $scope.clickCounter=0;
+
+                     $scope.handleClick = function(){
+                     	$scope.clickCounter++;
+                     }
+
+                     $scope.$watch('buttonEnabled', function(newValue) {
+                     	$('#jqui button').button({disabled:!newValue})
+
+                     });
 			
 			
 		});
@@ -34,12 +55,21 @@
 		</script>
 		
 	</head>
-	<body ng-controller="simpleCtrl">
-	<div class="well">
-	<h4>{{data}}</h4>
-    
+	<body>
+	<div id="angularRegion" class="well"  ng-controller="simpleCtrl">
+	<h4>Angular JS</h4>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" ng-model="buttonEnabled">
+			Enable Button
+		</label>
 	</div>
-
+	<div><p>click counter:{{clickCounter}}</p></div>
+	</div>
+	<div id="jqui"  class="well">
+		<h4>jQuery Ui</h4>
+		<button>Click Me</button>
+	</div>
 	
 		
 	</body>
