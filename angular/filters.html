@@ -1,4 +1,4 @@
-﻿<html ng-app="exampleApp">
+﻿<html ng-app="exampleApp" lang="ko">
 <head>
     <title>Filters</title>
 
@@ -12,6 +12,7 @@
     
     <!-- Angular Js -->
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular-locale_ko-kr.js"></script>
    
     <script>
         angular.module("exampleApp", [])
@@ -29,6 +30,22 @@
                     { name: "Wine", category: "Drinks", price: 8.99, expiry: 365 },
                     { name: "Whiskey", category: "Drinks", price: 45.99, expiry: 365 }
                 ];
+                // $scope.getExporDate = function(days){
+                //     var now = new Date();
+                //     return now.setDate(now.getDate()+days);
+                // }
+                
+                $scope.limitVal="5";
+                $scope.limitRange=[];
+                for (var i = (0-$scope.products.length); i <=$scope.products.length ; i++) {
+                    console.log(i);
+                    $scope.limitRange.push(i.toString());
+               
+                }
+
+                $scope.selectItems=function(item){
+                    return item.category =="Fish" || item.name=="Beer";
+                }
             });
     </script>
    
@@ -42,6 +59,13 @@
             </h3>
         </div>
         <div class="panel-body">
+            Limit: <select ng-model="limitVal" ng-options="item for item in limitRange">
+                
+            </select>
+
+        </div>
+
+        <div class="panel-body">
             <table class="table table-striped table-bordered table-condensed">
                 <thead>
                     <tr>
@@ -52,10 +76,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="p in products">
+                    <tr ng-repeat="p in products | filter:selectItems">
                         <td>{{p.name }}</td>
                         <td>{{p.category}}</td>
-                        <td>{{p.expiry}}</td>
+                        <td>{{getExporDate(p.expiry)| date:"yyyy - MM - dd"}}</td>
                         <td class="text-right">{{p.price | currency }}</td>
                     </tr>
 
