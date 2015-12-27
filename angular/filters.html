@@ -30,24 +30,29 @@
                     { name: "Wine", category: "Drinks", price: 8.99, expiry: 365 },
                     { name: "Whiskey", category: "Drinks", price: 45.99, expiry: 365 }
                 ];
-                // $scope.getExporDate = function(days){
-                //     var now = new Date();
-                //     return now.setDate(now.getDate()+days);
-                // }
+                $scope.getExporDate = function(days){
+                    var now = new Date();
+                    return now.setDate(now.getDate()+days);
+                }
                 
                 $scope.limitVal="5";
                 $scope.limitRange=[];
                 for (var i = (0-$scope.products.length); i <=$scope.products.length ; i++) {
-                    console.log(i);
+                    //console.log(i);
                     $scope.limitRange.push(i.toString());
                
                 }
 
-                $scope.selectItems=function(item){
+                $scope.selectItem = function(item){
                     return item.category =="Fish" || item.name=="Beer";
+                }
+
+                $scope.myCustomSorter= function(item){
+                    return item.expiry < 5 ? 0 : item.price;
                 }
             });
     </script>
+    <script src="customFilters.js"></script>
    
 </head>
 <body ng-controller="defaultCtrl">
@@ -76,10 +81,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="p in products | filter:selectItems">
-                        <td>{{p.name }}</td>
-                        <td>{{p.category}}</td>
-                        <td>{{getExporDate(p.expiry)| date:"yyyy - MM - dd"}}</td>
+                    <tr ng-repeat="p in products | take:2:5">
+                        <td>{{p.name | lableCase:true }}</td>
+                        <td>{{p.category | lableCase:true}}</td>
+                        <td>{{p.expiry}}</td>
                         <td class="text-right">{{p.price | currency }}</td>
                     </tr>
 

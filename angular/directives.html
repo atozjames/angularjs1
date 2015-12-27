@@ -1,0 +1,41 @@
+﻿<html ng-app="exampleApp" lang="ko">
+<head>
+    <title>Directives</title>
+
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href=" bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href=" bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+    
+    <!-- Angular Js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular-locale_ko-kr.js"></script>
+   
+    <script>
+        angular.module("exampleApp", [])
+            .controller("defaultCtrl", function ($scope) {
+                $scope.products = [
+                    { name: "Apples", category: "Fruit", price: 1.20, expiry: 10 },
+                    { name: "Bananas", category: "Fruit", price: 2.42, expiry: 7 },
+                    { name: "Pears", category: "Fruit", price: 2.02, expiry: 6 },
+                ];
+               
+            });
+    </script>
+   
+</head>
+<body ng-controller="defaultCtrl">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>Products</h3>
+        </div>
+        
+        <div class="panel-body">
+        Content will go here
+        </div>
+    </div>
+</body>
+</html>
