@@ -8,6 +8,7 @@ grunt.initConfig({
           port: 9000,
           hostname:'localhost',
           bases: ['angular'],
+          index: 'filters.html',
           open:true,
           livereload: true
         }
