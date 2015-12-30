@@ -1,0 +1,39 @@
+﻿<html ng-app="exampleApp" lang="ko">
+<head>
+    <title>Directives</title>
+
+    <!-- jQuery -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link href=" bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href=" bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+    
+    <!-- Angular Js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular-locale_ko-kr.js"></script>
+   
+    <script>
+        angular.module("exampleApp", [])
+            .directive('scopeDemo',function(){
+                return{
+                
+                  template: "<div class='panel-body'>Name : <input ng-model=name></div>",
+                  scope:true
+
+                } //end of return
+            })
+            .controller("scopeCtrl", function ($scope) {
+               
+            });
+    </script>
+   
+</head>
+<body ng-controller="scopeCtrl">
+    <div class="panel panel-default">
+        <div class="panel-body" scope-demo> </div>
+        <div class="panel-body" scope-demo> </div>
+    </div>
+</body>
+</html>

@@ -18,34 +18,16 @@
         angular.module("exampleApp", [])
             .directive('unorderedList',function(){
                 // Runs during compile
-                return function(scope,element,attrs){
-                    var data=scope[attrs["unorderedList"]];
-                    var propertyName=attrs["listProperty"];
+                return{
+                  
+                  link:function(scope,element,attrs){
+                    scope.data=scope[attrs["unorderedList"]];
+                  },
+                  restrict: "A",
+                  templateUrl: "tableTemplate.html",
+                  replace: true
 
-                    if (angular.isArray(data)){
-                        var listElem=angular.element("<ul>");
-                        element.append(listElem);
-                      
-                        for (var i=0;i<data.length;i++){
-                       
-                           (function(){
-                            var itemElement = angular.element("<li>");
-                            listElem.append(itemElement);
-                            var index =i;
-                            var wathcerFn= function (watchScope){
-                                return watchScope.$eval(propertyName, data[index]);
-                            }
-
-
-                            scope.$watch(wathcerFn, function(newValue, oldValue) {
-                                itemElement.text(newValue);
-                            });
-                        }());
-                       
-                       } 
-                    }
-
-                }
+                } //end of return
             })
             .controller("defaultCtrl", function ($scope) {
                 $scope.products = [
@@ -69,12 +51,13 @@
         <div class="panel-heading">
             <h3>Products</h3>
         </div>
+       
         <div class="panel-body">
-         <button type="button" class="btn btn-default" ng-click="incrementPrice()">Increment Price</button>
+        <div unordered-list ="products" class="table table-striped" ng-repeat="count in [1,2,3]">
+            This is where the list will go
         </div>
-        <div class="panel-body">
-        <div data-unordered-list ="products" data-list-property="price | currency"></div>
         </div>
+
     </div>
 </body>
 </html>
