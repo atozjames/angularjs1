@@ -1,0 +1,55 @@
+﻿<html ng-app="exampleApp" lang="ko">
+<head>
+    <title>Directives</title>
+
+    <!-- jQuery 
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+     -->
+    <!-- Bootstrap
+    <link href=" bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href=" bower_components/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+     CSS -->
+
+    <!-- Angular Js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular/angular-locale_ko-kr.js"></script>
+    <style type="text/css">
+    .bold{font-weight: bold;}
+    </style>
+   
+    <script>
+        angular.module("exampleApp", [])
+            .directive('demoDirective',function(){
+            return function(scope,element,attrs){
+              
+               var listItem=angular.element("<ol>");
+               element.append(listItem);
+
+               for(var i=0; i<scope.names.length; i++ ){
+                listItem.append(angular.element("<li>").append(angular.element("<span>").text(scope.names[i])));
+                
+               }
+
+               var buttons = element.find("button");
+               buttons.on("click",function(e){
+                    element.find("li").toggleClass('bold');
+               });     
+             
+                } //end of return
+            })
+            .controller("defaultCtrl", function ($scope) {
+               
+              $scope.names=["Apples","Bananas","Oranges"];
+            });
+
+    </script>
+   
+</head>
+<body ng-controller="defaultCtrl">
+<h3>Fruits</h3>
+<div demo-directive>
+    <button>Click me</button>
+</div>    
+</body>
+</html>
